@@ -1,7 +1,36 @@
 ### We create a bunch of helpful functions throughout the course.
 ### Storing them here so they're easily accessible.
 
+import matplotlib as plt
 import tensorflow as tf
+
+
+# Create a function to plot time series data
+def plot_time_series(timesteps,
+                     values,
+                     format='.',
+                     start=0,
+                     end=None,
+                     label=None):
+    """
+  Plots a timesteps (a series of points in time) against values (a series of values across timesteps).
+  
+  Parameters
+  ---------
+  timesteps : array of timesteps
+  values : array of values across time
+  format : style of plot, default "."
+  start : where to start the plot (setting a value will index from start of timesteps & values)
+  end : where to end the plot (setting a value will index from end of timesteps & values)
+  label : label to show on plot of values
+  """
+    # Plot the series
+    plt.plot(timesteps[start:end], values[start:end], format, label=label)
+    plt.xlabel("Time")
+    plt.ylabel("BTC Price")
+    if label:
+        plt.legend(fontsize=14)  # make label bigger
+    plt.grid(True)
 
 
 # Create a function to import an image and resize it to be able to be used with our model
